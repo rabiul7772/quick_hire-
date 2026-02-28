@@ -3,11 +3,18 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { FRONTEND_URL, PORT } from './config/env';
 
+import jobRoutes from './src/routes/jobRoutes';
+import applicationRoutes from './src/routes/applicationRoutes';
+import connectToDatabase from './database/mongodb';
+
 const app = express();
 
 app.set('trust proxy', 1);
 
 if (!FRONTEND_URL) throw new Error('FRONTEND_URL is not defined in .env file');
+
+// Connect to MongoDB
+connectToDatabase();
 
 app.use(
   cors({
@@ -19,6 +26,10 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
+
+// API Routes
+app.use('/api/jobs', jobRoutes);
+app.use('/api/applications', applicationRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).json({
