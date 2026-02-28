@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Application } from '../models/Application';
+import { Application } from '../models/application.model';
 import { applicationSchema } from '../validators/schema';
 
 export const createApplication = async (
@@ -13,7 +13,7 @@ export const createApplication = async (
       res.status(400).json({
         success: false,
         message: 'Validation error',
-        errors: validatedData.error.errors
+        errors: validatedData.error.issues
       });
       return;
     }

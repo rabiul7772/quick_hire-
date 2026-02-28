@@ -11,10 +11,10 @@ export const jobSchema = z.object({
 
 export const applicationSchema = z.object({
   jobId: z.string().refine(val => mongoose.Types.ObjectId.isValid(val), {
-    message: 'Invalid jobId formart'
+    message: 'Invalid jobId format'
   }),
   name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-  resumeLink: z.string().url('Invalid resume link format'),
+  email: z.email('Invalid email address'),
+  resumeLink: z.url('Invalid resume link format'),
   coverNote: z.string().min(1, 'Cover note is required')
 });

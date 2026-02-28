@@ -2,9 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { FRONTEND_URL, PORT } from './config/env';
-
-import jobRoutes from './src/routes/jobRoutes';
-import applicationRoutes from './src/routes/applicationRoutes';
+import jobRouter from './src/routes/job.routes';
+import applicationRouter from './src/routes/application.routes';
 import connectToDatabase from './database/mongodb';
 
 const app = express();
@@ -28,8 +27,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // API Routes
-app.use('/api/jobs', jobRoutes);
-app.use('/api/applications', applicationRoutes);
+app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/applications', applicationRouter);
 
 app.get('/', (req, res) => {
   res.status(200).json({

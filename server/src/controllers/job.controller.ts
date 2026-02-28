@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Job } from '../models/Job';
+import { Job } from '../models/job.model';
 import { jobSchema } from '../validators/schema';
 
 export const getJobs = async (req: Request, res: Response) => {
@@ -9,7 +9,7 @@ export const getJobs = async (req: Request, res: Response) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Server error fetching jobs' });
+      .json({ success: false, message: 'Server error while fetching jobs' });
   }
 };
 
@@ -25,9 +25,10 @@ export const getJobById = async (
     }
     res.status(200).json({ success: true, data: job });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: 'Server error fetching job by ID' });
+    res.status(500).json({
+      success: false,
+      message: 'Server error while fetching job by ID'
+    });
   }
 };
 
@@ -39,7 +40,7 @@ export const createJob = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({
         success: false,
         message: 'Validation error',
-        errors: validatedData.error.errors
+        errors: validatedData.error.issues
       });
       return;
     }
@@ -49,7 +50,7 @@ export const createJob = async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Server error creating job' });
+      .json({ success: false, message: 'Server error while creating job' });
   }
 };
 
@@ -66,6 +67,6 @@ export const deleteJob = async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Server error deleting job' });
+      .json({ success: false, message: 'Server error while deleting job' });
   }
 };
