@@ -1,1 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+
 @import 'tailwindcss';
+
+@theme {
+  --color-brand-primary: #4640de;
+  --color-brand-secondary: #ccccf5;
+  --color-accent-blue: #26a4ff;
+
+  --color-neutral-100: #202430;
+  --color-neutral-80: #515b6f;
+  --color-neutral-60: #7c8493;
+  --color-neutral-20: #d6ddeb;
+  --color-neutral-10: #e9ebf0;
+  --color-neutral-0: #ffffff;
+
+  --color-accent-gold: #ffb836;
+  --color-accent-purple: #7b61ff;
+  --color-accent-red: #ff6550;
+  --color-accent-green: #56cdad;
+  --color-accent-blue-light: #e9f0fe;
+
+  --font-sans: 'Epilogue', sans-serif;
+  --font-epilogue: 'Epilogue', sans-serif;
+  --font-clash: 'Clash Display', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-neutral-0);
+    color: var(--color-neutral-80);
+    font-family: var(--font-epilogue);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-clash);
+    color: var(--color-neutral-100);
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
