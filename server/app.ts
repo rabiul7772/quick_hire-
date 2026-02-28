@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { FRONTEND_URL, PORT } from './config/env';
+import jobRouter from './src/routes/job.routes';
+import applicationRouter from './src/routes/application.routes';
+import connectToDatabase from './database/mongodb';
 
 const app = express();
 
@@ -20,6 +23,10 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// API Routes
+app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/applications', applicationRouter);
+
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -27,6 +34,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
+
+  // Connect to MongoDB
+  await connectToDatabase();
 });
