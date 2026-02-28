@@ -12,9 +12,6 @@ app.set('trust proxy', 1);
 
 if (!FRONTEND_URL) throw new Error('FRONTEND_URL is not defined in .env file');
 
-// Connect to MongoDB
-connectToDatabase();
-
 app.use(
   cors({
     origin: FRONTEND_URL,
@@ -37,6 +34,9 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
+
+  // Connect to MongoDB
+  await connectToDatabase();
 });
