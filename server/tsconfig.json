@@ -4,8 +4,8 @@
     "target": "ES2022",
     "lib": ["ES2022"],
 
-    /* Node ESM */
-    "module": "ESNext",
+    /* Node ESM compatible output */
+    "module": "CommonJS",
     "moduleResolution": "node",
 
     /* Project structure */
