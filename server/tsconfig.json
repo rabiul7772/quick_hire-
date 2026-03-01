@@ -5,8 +5,8 @@
     "lib": ["ES2022"],
 
     /* Node ESM */
-    "module": "ES2022",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
 
     /* Project structure */
     "rootDir": "src",
@@ -25,10 +25,7 @@
     "sourceMap": true,
 
     /* Performance */
-    "skipLibCheck": true,
-
-    /* Environment types */
-    "types": ["node"]
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
