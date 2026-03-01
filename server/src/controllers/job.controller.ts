@@ -4,12 +4,60 @@ import { jobSchema } from '../validators/schema';
 
 export const getJobs = async (req: Request, res: Response) => {
   try {
-    const jobs = await Job.find().sort({ createdAt: -1 });
+    const { isFeatured, limit, search, location, category } = req.query;
+    const filter: Record<string, unknown> = {};
+
+    if (isFeatured === 'true') filter.isFeatured = true;
+    if (category) filter.category = category;
+
+    if (search) {
+      filter.$or = [
+        { title: { $regex: search as string, $options: 'i' } },
+        { company: { $regex: search as string, $options: 'i' } }
+      ];
+    }
+
+    if (location) {
+      filter.location = { $regex: location as string, $options: 'i' };
+    }
+
+    const query = Job.find(filter).sort({ createdAt: -1 });
+
+    if (limit) query.limit(Number(limit));
+
+    const jobs = await query;
     res.status(200).json({ success: true, data: jobs });
   } catch (error) {
     res
       .status(500)
       .json({ success: false, message: 'Server error while fetching jobs' });
+  }
+};
+
+export const getCategoryCounts = async (req: Request, res: Response) => {
+  try {
+    const counts = await Job.aggregate([
+      {
+        $group: {
+          _id: '$category',
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          name: '$_id',
+          count: 1,
+          _id: 0
+        }
+      }
+    ]);
+
+    res.status(200).json({ success: true, data: counts });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error while fetching category counts'
+    });
   }
 };
 
@@ -45,7 +93,11 @@ export const createJob = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const newJob = await Job.create(validatedData.data);
+    // Remove undefined values to satisfy Mongoose's exactOptionalPropertyTypes
+    const cleanedData = Object.fromEntries(
+      Object.entries(validatedData.data).filter(([_, v]) => v !== undefined)
+    );
+    const newJob = await Job.create(cleanedData);
     res.status(201).json({ success: true, data: newJob });
   } catch (error) {
     res

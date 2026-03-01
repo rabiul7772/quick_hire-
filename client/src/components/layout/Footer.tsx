@@ -103,7 +103,7 @@ export const Footer = () => {
 
       <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-neutral-20 text-sm">
-          2021 @ QuickHire. All rights reserved.
+          {new Date().getFullYear()} @ QuickHire. All rights reserved.
         </p>
         <div className="flex gap-6">
           {socialLinks.map(link => (

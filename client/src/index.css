@@ -47,3 +47,37 @@
     cursor: pointer;
   }
 }
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-epilogue font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-brand-primary text-white hover:shadow-lg hover:shadow-brand-primary/20;
+  }
+
+  .btn-secondary {
+    @apply bg-neutral-10 text-neutral-100 hover:bg-neutral-20;
+  }
+
+  .input-group {
+    @apply space-y-1.5;
+  }
+
+  .input-label {
+    @apply block text-sm font-bold font-epilogue text-neutral-100;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-neutral-0 border border-neutral-20 rounded-lg font-epilogue text-neutral-80 transition-all outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/5;
+  }
+
+  .input-error {
+    @apply border-accent-red focus:border-accent-red focus:ring-accent-red/5;
+  }
+
+  .error-text {
+    @apply mt-1 text-xs text-accent-red font-epilogue;
+  }
+}
