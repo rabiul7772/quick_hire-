@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { FRONTEND_URL, PORT } from './config/env';
-import jobRouter from './routes/job.routes';
-import applicationRouter from './routes/application.routes';
-import authRouter from './routes/auth.routes';
-import connectToDatabase from './database/mongodb';
+import { FRONTEND_URL, PORT } from './config/env.js';
+import jobRouter from './routes/job.routes.js';
+import applicationRouter from './routes/application.routes.js';
+import authRouter from './routes/auth.routes.js';
+import connectToDatabase from './database/mongodb.js';
 
 const app = express();
 

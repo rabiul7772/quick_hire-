@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
-import User from '../models/user.model';
-import { JWT_SECRET } from '../config/env';
+import User from '../models/user.model.js';
+import { JWT_SECRET } from '../config/env.js';
 
 export interface AuthRequest extends Request {
   user?: any;

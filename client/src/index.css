@@ -54,30 +54,45 @@
   }
 
   .btn-primary {
-    @apply bg-brand-primary text-white hover:shadow-lg hover:shadow-brand-primary/20;
+    @apply bg-[var(--color-brand-primary)] text-white hover:shadow-lg;
+    background-color: var(--color-brand-primary);
   }
 
   .btn-secondary {
-    @apply bg-neutral-10 text-neutral-100 hover:bg-neutral-20;
+    @apply bg-[var(--color-neutral-10)] text-[var(--color-neutral-100)] hover:bg-[var(--color-neutral-20)];
+    background-color: var(--color-neutral-10);
+    color: var(--color-neutral-100);
   }
 
   .input-group {
-    @apply space-y-1.5;
+    @apply flex flex-col gap-1.5;
   }
 
   .input-label {
-    @apply block text-sm font-bold font-epilogue text-neutral-100;
+    @apply block text-sm font-bold font-epilogue;
+    color: var(--color-neutral-100);
+    margin-bottom: 0.375rem;
   }
 
   .input-field {
-    @apply w-full px-4 py-2.5 bg-neutral-0 border border-neutral-20 rounded-lg font-epilogue text-neutral-80 transition-all outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/5;
+    @apply w-full px-4 py-2.5 rounded-lg font-epilogue transition-all outline-none border;
+    background-color: var(--color-neutral-0);
+    border-color: var(--color-neutral-20);
+    color: var(--color-neutral-80);
+  }
+
+  .input-field:focus {
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 4px
+      color-mix(in srgb, var(--color-brand-primary), transparent 95%);
   }
 
   .input-error {
-    @apply border-accent-red focus:border-accent-red focus:ring-accent-red/5;
+    border-color: var(--color-accent-red);
   }
 
   .error-text {
-    @apply mt-1 text-xs text-accent-red font-epilogue;
+    @apply mt-1 text-xs font-epilogue;
+    color: var(--color-accent-red);
   }
 }

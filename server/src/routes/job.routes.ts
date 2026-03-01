@@ -5,8 +5,8 @@ import {
   createJob,
   deleteJob,
   getCategoryCounts
-} from '../controllers/job.controller';
-import { protect, restrictTo } from '../middleware/auth.middleware';
+} from '../controllers/job.controller.js';
+import { protect, restrictTo } from '../middleware/auth.middleware.js';
 
 const jobRouter = Router();
 

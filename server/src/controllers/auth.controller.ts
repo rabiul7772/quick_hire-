@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
-import User from '../models/user.model';
-import { JWT_SECRET, JWT_EXPIRES_IN, NODE_ENV } from '../config/env';
+import User from '../models/user.model.js';
+import { JWT_SECRET, JWT_EXPIRES_IN, NODE_ENV } from '../config/env.js';
 
 const signToken = (id: string) => {
   return jwt.sign({ id }, JWT_SECRET as string, {

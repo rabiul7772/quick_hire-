@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Job } from '../models/job.model';
-import { jobSchema } from '../validators/schema';
+import { Job } from '../models/job.model.js';
+import { jobSchema } from '../validators/schema.js';
 
 export const getJobs = async (req: Request, res: Response) => {
   try {

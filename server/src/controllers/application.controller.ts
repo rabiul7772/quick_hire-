@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { Application } from '../models/application.model';
-import { applicationSchema } from '../validators/schema';
+import { Application } from '../models/application.model.js';
+import { applicationSchema } from '../validators/schema.js';
 
 export const createApplication = async (
   req: Request,
