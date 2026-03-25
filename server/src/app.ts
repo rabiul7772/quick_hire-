@@ -6,6 +6,7 @@ import jobRouter from './routes/job.routes.js';
 import applicationRouter from './routes/application.routes.js';
 import authRouter from './routes/auth.routes.js';
 import connectToDatabase from './database/mongodb.js';
+import healthCheckRouter from './routes/health.routes.js';
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // API Routes
+app.use('/api/v1/health-check', healthCheckRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/jobs', jobRouter);
 app.use('/api/v1/applications', applicationRouter);
